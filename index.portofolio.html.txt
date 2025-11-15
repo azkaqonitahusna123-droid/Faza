@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Landing Page</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4F46E5, #6366F1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #3730A3, #4F46E5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        .testimonial-slider {
+            overflow: hidden;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #4F46E5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10B981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="font-sans text-gray-800"><!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+   <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+     <div class="text-xl font-bold text-indigo-600" id="nav-name">
+      R.AY.Aulia Mafaza
+     </div>
+     <div class="hidden md:flex space-x-8"><a href="#home" class="text-gray-600 hover:text-indigo-600 transition-colors">Beranda</a> <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors">Tentang</a> <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition-colors">Keahlian</a> <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 transition-colors">Portofolio</a> <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition-colors">Kontak</a>
+     </div><button class="md:hidden text-gray-600"> <i class="fas fa-bars text-xl"></i> </button>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="home" class="gradient-bg min-h-full flex items-center justify-center text-white">
+   <div class="max-w-6xl mx-auto px-4 py-20 text-center">
+    <div class="fade-in">
+     <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/20 shadow-xl">
+      <svg viewbox="0 0 200 200" class="w-full h-full"><defs>
+        <lineargradient id="profileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#4F46E5" />
+         <stop offset="100%" style="stop-color:#6366F1" />
+        </lineargradient>
+       </defs> <circle cx="100" cy="100" r="90" fill="url(#profileGradient)" /> <circle cx="100" cy="80" r="25" fill="white" opacity="0.9" /> <path d="M60 140 Q100 120 140 140 L140 180 Q100 160 60 180 Z" fill="white" opacity="0.9" />
+      </svg>
+     </div>
+     <h1 class="text-5xl md:text-6xl font-bold mb-4" id="hero-name">R.AY.Aulia Mafaza</h1>
+     <p class="text-xl md:text-2xl mb-6 text-white/90" id="hero-title">Web Developer &amp; UI/UX Designer</p>
+     <p class="text-lg mb-8 max-w-2xl mx-auto text-white/80" id="hero-description">Passionate developer dengan 5+ tahun pengalaman menciptakan solusi digital yang inovatif dan user-friendly</p>
+     <div class="flex justify-center"><button class="bg-white/20 backdrop-blur-sm px-8 py-3 rounded-full font-semibold text-white border border-white/30 hover:bg-white/30 transition-all"> <i class="fas fa-briefcase mr-2"></i>Lihat Portofolio </button>
+     </div>
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section id="about" class="py-20 bg-gray-50">
+   <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Tentang Saya</h2>
+     <div class="w-20 h-1 bg-indigo-600 mx-auto rounded"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+     <div class="slide-in-left">
+      <div class="bg-white p-8 rounded-2xl card-shadow">
+       <p class="text-lg leading-relaxed text-gray-600" id="about-text">Saya adalah R.AY.Aulia Mafaza, siswi kelas IX (sembilan) berusia 15 tahun di Islamic Boarding School Padepokan Kyai Mudrikah Kembang Kuning (IBS PKMKK). Sebagai pelajar yang aktif dan bersemangat, saya sangat aktif dalam kegiatan non-akademik, keagamaan, dan ekstrakurikuler di sekolah. Saya memiliki minat yang besar dalam teknologi, pembelajaran digital, dan pengembangan diri melalui berbagai kegiatan organisasi dan keagamaan.</p>
+      </div>
+     </div>
+     <div class="slide-in-right">
+      <div class="grid grid-cols-2 gap-6">
+       <div class="text-center p-6 bg-white rounded-xl card-shadow">
+        <div class="text-3xl font-bold text-indigo-600 mb-2">
+         15
+        </div>
+        <div class="text-gray-600">
+         Tahun
+        </div>
+       </div>
+       <div class="text-center p-6 bg-white rounded-xl card-shadow">
+        <div class="text-3xl font-bold text-indigo-600 mb-2">
+         IX
+        </div>
+        <div class="text-gray-600">
+         Kelas Sembilan
+        </div>
+       </div>
+       <div class="text-center p-6 bg-white rounded-xl card-shadow">
+        <div class="text-3xl font-bold text-indigo-600 mb-2">
+         🏫
+        </div>
+        <div class="text-gray-600">
+         IBS PKMKK
+        </div>
+       </div>
+       <div class="text-center p-6 bg-white rounded-xl card-shadow">
+        <div class="text-3xl font-bold text-indigo-600 mb-2">
+         👩‍🎓
+        </div>
+        <div class="text-gray-600">
+         Pelajar
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Skills Section -->
+  <section id="skills" class="py-20 bg-white">
+   <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Keahlian</h2>
+     <div class="w-20 h-1 bg-indigo-600 mx-auto rounded"></div>
+    </div>
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center"><i class="fas fa-book text-2xl text-blue-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Pembelajaran</h3>
+      <p class="text-gray-600">Aktif dalam kegiatan akademik, non-akademik, dan ekstrakurikuler</p>
+     </div>
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center"><i class="fas fa-laptop text-2xl text-purple-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Teknologi</h3>
+      <p class="text-gray-600">Minat dalam dunia digital dan teknologi modern</p>
+     </div>
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center"><i class="fas fa-paint-brush text-2xl text-green-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Desain</h3>
+      <p class="text-gray-600">Kreativitas dalam seni dan desain visual</p>
+     </div>
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center"><i class="fas fa-users text-2xl text-pink-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Komunikasi</h3>
+      <p class="text-gray-600">Kemampuan berinteraksi dan bekerja dalam tim</p>
+     </div>
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-yellow-100 rounded-full flex items-center justify-center"><i class="fas fa-lightbulb text-2xl text-yellow-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Inovasi</h3>
+      <p class="text-gray-600">Pemikiran kreatif dan solusi inovatif</p>
+     </div>
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-emerald-100 rounded-full flex items-center justify-center"><i class="fas fa-mosque text-2xl text-emerald-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Keagamaan</h3>
+      <p class="text-gray-600">Aktif dalam kegiatan keagamaan dan spiritual di pesantren</p>
+     </div>
+     <div class="skill-card bg-white p-8 rounded-2xl card-shadow text-center fade-in">
+      <div class="w-16 h-16 mx-auto mb-4 bg-indigo-100 rounded-full flex items-center justify-center"><i class="fas fa-star text-2xl text-indigo-600"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Prestasi</h3>
+      <p class="text-gray-600">Semangat untuk meraih pencapaian terbaik</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Portfolio Section -->
+  <section id="portfolio" class="py-20 bg-gray-50">
+   <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Portofolio</h2>
+     <div class="w-20 h-1 bg-indigo-600 mx-auto rounded"></div>
+    </div>
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+     <div class="project-card bg-white rounded-2xl card-shadow overflow-hidden fade-in">
+      <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center"><i class="fas fa-graduation-cap text-4xl text-white"></i>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-semibold mb-2">Prestasi Akademik</h3>
+       <p class="text-gray-600 mb-4">Pencapaian dalam berbagai mata pelajaran dan kegiatan akademik di sekolah</p>
+       <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Matematika</span> <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">Sains</span>
+       </div><button class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors"> Lihat Detail <i class="fas fa-arrow-right ml-1"></i> </button>
+      </div>
+     </div>
+     <div class="project-card bg-white rounded-2xl card-shadow overflow-hidden fade-in">
+      <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center"><i class="fas fa-users text-4xl text-white"></i>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-semibold mb-2">Kegiatan Organisasi</h3>
+       <p class="text-gray-600 mb-4">Aktif dalam berbagai kegiatan ekstrakurikuler dan organisasi siswa</p>
+       <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">OSIS</span> <span class="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm">Pramuka</span>
+       </div><button class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors"> Lihat Detail <i class="fas fa-arrow-right ml-1"></i> </button>
+      </div>
+     </div>
+     <div class="project-card bg-white rounded-2xl card-shadow overflow-hidden fade-in">
+      <div class="h-48 bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center"><i class="fas fa-palette text-4xl text-white"></i>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-semibold mb-2">Proyek Kreatif</h3>
+       <p class="text-gray-600 mb-4">Karya seni dan desain yang dibuat dalam kegiatan pembelajaran dan hobi</p>
+       <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-sm">Seni</span> <span class="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm">Desain</span>
+       </div><button class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors"> Lihat Detail <i class="fas fa-arrow-right ml-1"></i> </button>
+      </div>
+     </div>
+     <div class="project-card bg-white rounded-2xl card-shadow overflow-hidden fade-in">
+      <div class="h-48 bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center"><i class="fas fa-mosque text-4xl text-white"></i>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-semibold mb-2">Kegiatan Keagamaan</h3>
+       <p class="text-gray-600 mb-4">Partisipasi aktif dalam kegiatan spiritual dan keagamaan di pesantren</p>
+       <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-sm">Tahfidz</span> <span class="px-3 py-1 bg-teal-100 text-teal-600 rounded-full text-sm">Kajian</span>
+       </div><button class="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors"> Lihat Detail <i class="fas fa-arrow-right ml-1"></i> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials Section -->
+  <section class="py-20 bg-white">
+   <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Testimoni</h2>
+     <div class="w-20 h-1 bg-indigo-600 mx-auto rounded"></div>
+    </div>
+    <div class="testimonial-slider relative">
+     <div class="testimonial-track" id="testimonial-track">
+      <div class="w-full flex-shrink-0 px-4">
+       <div class="bg-gray-50 p-8 rounded-2xl card-shadow text-center max-w-2xl mx-auto">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden">
+         <svg viewbox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="45" fill="#10B981" /> <circle cx="50" cy="40" r="12" fill="white" /> <path d="M30 70 Q50 60 70 70 L70 85 Q50 75 30 85 Z" fill="white" />
+         </svg>
+        </div>
+        <p class="text-lg text-gray-600 mb-4 italic">"Aulia adalah siswa yang sangat aktif dan berprestasi. Selalu antusias dalam pembelajaran dan memiliki kreativitas yang tinggi."</p>
+        <h4 class="font-semibold text-gray-800">Ibu Sari</h4>
+        <p class="text-gray-500">Guru Wali Kelas IX</p>
+       </div>
+      </div>
+      <div class="w-full flex-shrink-0 px-4">
+       <div class="bg-gray-50 p-8 rounded-2xl card-shadow text-center max-w-2xl mx-auto">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden">
+         <svg viewbox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="45" fill="#3B82F6" /> <circle cx="50" cy="40" r="12" fill="white" /> <path d="M30 70 Q50 60 70 70 L70 85 Q50 75 30 85 Z" fill="white" />
+         </svg>
+        </div>
+        <p class="text-lg text-gray-600 mb-4 italic">"Aulia memiliki semangat belajar yang luar biasa dan selalu berusaha memberikan yang terbaik dalam setiap tugas."</p>
+        <h4 class="font-semibold text-gray-800">Pak Ahmad</h4>
+        <p class="text-gray-500">Guru Matematika</p>
+       </div>
+      </div>
+     </div>
+     <div class="flex justify-center mt-8 space-x-2"><button class="w-3 h-3 rounded-full bg-indigo-600 testimonial-dot active" data-slide="0"></button> <button class="w-3 h-3 rounded-full bg-gray-300 testimonial-dot" data-slide="1"></button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50">
+   <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Hubungi Saya</h2>
+     <div class="w-20 h-1 bg-indigo-600 mx-auto rounded"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12">
+     <div class="slide-in-left">
+      <h3 class="text-2xl font-semibold mb-6">Mari Berkolaborasi</h3>
+      <p class="text-gray-600 mb-8">Saya siap membantu mewujudkan proyek digital Anda. Mari diskusikan bagaimana kita bisa bekerja sama untuk menciptakan solusi yang tepat untuk kebutuhan Anda.</p>
+      <div class="space-y-4">
+       <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"><i class="fab fa-whatsapp text-green-600 text-xl"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold">WhatsApp</h4>
+         <p class="text-gray-600" id="whatsapp-display">+62 812-3456-7890</p>
+        </div>
+       </div>
+       <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center"><i class="fab fa-instagram text-pink-600 text-xl"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold">Instagram</h4>
+         <p class="text-gray-600" id="instagram-display">@johndoe.dev</p>
+        </div>
+       </div>
+       <div class="flex items-center space-x-4">
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"><i class="fab fa-linkedin text-blue-600 text-xl"></i>
+        </div>
+        <div>
+         <h4 class="font-semibold">LinkedIn</h4>
+         <p class="text-gray-600" id="linkedin-display">linkedin.com/in/johndoe</p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="slide-in-right">
+      <form id="contact-form" class="bg-white p-8 rounded-2xl card-shadow">
+       <div class="mb-6"><label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label> <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+       </div>
+       <div class="mb-6"><label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label> <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+       </div>
+       <div class="mb-6"><label for="message" class="block text-sm font-medium text-gray-700 mb-2">Pesan</label> <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"></textarea>
+       </div><button type="submit" class="w-full btn-primary px-6 py-3 rounded-lg font-semibold text-white flex items-center justify-center"> <span id="submit-text">Kirim Pesan</span>
+        <div class="loading-spinner ml-2" id="loading-spinner"></div><i class="fas fa-paper-plane ml-2" id="submit-icon"></i> </button>
+      </form>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+   <div class="max-w-6xl mx-auto px-4 text-center">
+    <div class="mb-8">
+     <h3 class="text-2xl font-bold mb-4" id="footer-name">R.AY.Aulia Mafaza</h3>
+     <p class="text-gray-400 mb-6">Pelajar Kelas IX (Sembilan) - Islamic Boarding School PKMKK</p>
+     <div class="flex justify-center space-x-6"><a href="#" class="text-gray-400 hover:text-white transition-colors text-xl" id="footer-whatsapp"> <i class="fab fa-whatsapp"></i> </a> <a href="#" class="text-gray-400 hover:text-white transition-colors text-xl" id="footer-instagram"> <i class="fab fa-instagram"></i> </a> <a href="#" class="text-gray-400 hover:text-white transition-colors text-xl" id="footer-linkedin"> <i class="fab fa-linkedin"></i> </a>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 pt-8">
+     <p class="text-gray-400">© 2024 R.AY.Aulia Mafaza. All rights reserved.</p>
+    </div>
+   </div>
+  </footer><!-- Toast Notification -->
+  <div id="toast" class="toast"><i class="fas fa-check-circle mr-2"></i> <span id="toast-message">Pesan berhasil dikirim!</span>
+  </div>
+  <script>
+        // Default configuration
+        const defaultConfig = {
+            full_name: "R.AY.Aulia Mafaza",
+            job_title: "Pelajar Kelas IX (Sembilan)", 
+            hero_description: "Siswi kelas IX berusia 15 tahun di Islamic Boarding School Padepokan Kyai Mudrikah Kembang Kuning dengan semangat belajar yang tinggi",
+            about_text: "Saya adalah R.AY.Aulia Mafaza, siswi kelas IX (sembilan) berusia 15 tahun di Islamic Boarding School Padepokan Kyai Mudrikah Kembang Kuning (IBS PKMKK). Sebagai pelajar yang aktif dan bersemangat, saya sangat aktif dalam kegiatan non-akademik, keagamaan, dan ekstrakurikuler di sekolah. Saya memiliki minat yang besar dalam teknologi, pembelajaran digital, dan pengembangan diri melalui berbagai kegiatan organisasi dan keagamaan.",
+            whatsapp_number: "+62 812-3456-7890",
+            instagram_handle: "@aulia.mafaza",
+            linkedin_url: "linkedin.com/in/aulia-mafaza",
+            primary_color: "#4F46E5",
+            secondary_color: "#6366F1",
+            text_color: "#1F2937",
+            background_color: "#F9FAFB",
+            accent_color: "#10B981"
+        };
+
+        // Data SDK handler
+        const dataHandler = {
+            onDataChanged(data) {
+                // Update contact messages count if needed
+                console.log(`${data.length} pesan kontak tersimpan`);
+            }
+        };
+
+        // Element SDK configuration
+        async function onConfigChange(config) {
+            const fullName = config.full_name || defaultConfig.full_name;
+            const jobTitle = config.job_title || defaultConfig.job_title;
+            const heroDescription = config.hero_description || defaultConfig.hero_description;
+            const aboutText = config.about_text || defaultConfig.about_text;
+            const whatsappNumber = config.whatsapp_number || defaultConfig.whatsapp_number;
+            const instagramHandle = config.instagram_handle || defaultConfig.instagram_handle;
+            const linkedinUrl = config.linkedin_url || defaultConfig.linkedin_url;
+            
+            // Update all name references
+            document.getElementById('nav-name').textContent = fullName;
+            document.getElementById('hero-name').textContent = fullName;
+            document.getElementById('footer-name').textContent = fullName;
+            
+            // Update job title
+            document.getElementById('hero-title').textContent = jobTitle;
+            
+            // Update descriptions
+            document.getElementById('hero-description').textContent = heroDescription;
+            document.getElementById('about-text').textContent = aboutText;
+            
+            // Update contact info
+            document.getElementById('whatsapp-display').textContent = whatsappNumber;
+            document.getElementById('instagram-display').textContent = instagramHandle;
+            document.getElementById('linkedin-display').textContent = linkedinUrl;
+            
+            // Update footer links
+            const whatsappLink = document.getElementById('footer-whatsapp');
+            const instagramLink = document.getElementById('footer-instagram');
+            const linkedinLink = document.getElementById('footer-linkedin');
+            
+            whatsappLink.href = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}`;
+            instagramLink.href = `https://instagram.com/${instagramHandle.replace('@', '')}`;
+            linkedinLink.href = `https://${linkedinUrl}`;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.primary_color || defaultConfig.primary_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.secondary_color || defaultConfig.secondary_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ secondary_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.accent_color || defaultConfig.accent_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["full_name", config.full_name || defaultConfig.full_name],
+                ["job_title", config.job_title || defaultConfig.job_title],
+                ["hero_description", config.hero_description || defaultConfig.hero_description],
+                ["about_text", config.about_text || defaultConfig.about_text],
+                ["whatsapp_number", config.whatsapp_number || defaultConfig.whatsapp_number],
+                ["instagram_handle", config.instagram_handle || defaultConfig.instagram_handle],
+                ["linkedin_url", config.linkedin_url || defaultConfig.linkedin_url]
+            ]);
+        }
+
+        // Initialize SDKs
+        async function initializeApp() {
+            // Initialize Data SDK
+            if (window.dataSdk) {
+                const initResult = await window.dataSdk.init(dataHandler);
+                if (!initResult.isOk) {
+                    console.error("Failed to initialize data SDK");
+                }
+            }
+
+            // Initialize Element SDK
+            if (window.elementSdk) {
+                await window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange,
+                    mapToCapabilities,
+                    mapToEditPanelValues
+                });
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Testimonial slider
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function updateTestimonialSlider() {
+            const track = document.getElementById('testimonial-track');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+                dot.classList.toggle('bg-indigo-600', index === currentSlide);
+                dot.classList.toggle('bg-gray-300', index !== currentSlide);
+            });
+        }
+
+        document.querySelectorAll('.testimonial-dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateTestimonialSlider();
+            });
+        });
+
+        // Auto-slide testimonials
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateTestimonialSlider();
+        }, 5000);
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const submitText = document.getElementById('submit-text');
+            const submitIcon = document.getElementById('submit-icon');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            
+            // Show loading state
+            submitText.textContent = 'Mengirim...';
+            submitIcon.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(e.target);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                timestamp: new Date().toISOString()
+            };
+            
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(contactData);
+                
+                // Reset loading state
+                submitText.textContent = 'Kirim Pesan';
+                submitIcon.style.display = 'inline-block';
+                loadingSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                if (result.isOk) {
+                    // Show success toast
+                    const toast = document.getElementById('toast');
+                    const toastMessage = document.getElementById('toast-message');
+                    toastMessage.textContent = 'Pesan berhasil dikirim! Terima kasih.';
+                    toast.classList.add('show');
+                    
+                    // Hide toast after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                    
+                    // Reset form
+                    e.target.reset();
+                } else {
+                    // Show error toast
+                    const toast = document.getElementById('toast');
+                    const toastMessage = document.getElementById('toast-message');
+                    toast.style.background = '#EF4444';
+                    toastMessage.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>Gagal mengirim pesan. Silakan coba lagi.';
+                    toast.classList.add('show');
+                    
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                        toast.style.background = '#10B981';
+                    }, 3000);
+                }
+            }
+        });
+
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            initializeApp();
+            handleScrollAnimations();
+        });
+
+        // Handle scroll events
+        window.addEventListener('scroll', handleScrollAnimations);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eb763321edfda7',t:'MTc2MzE3NTI0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
